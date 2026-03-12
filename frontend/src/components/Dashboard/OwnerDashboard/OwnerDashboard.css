@@ -1,0 +1,407 @@
+.dashboard-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  gap: 25px;
+  padding: 25px;
+  background: linear-gradient(135deg, #f5d0c5, #e0e7ff);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  background: linear-gradient(180deg, #1e3a8a, #1e293b);
+  color: white;
+  border-radius: 28px;
+  
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.brand-logo {
+  width: 120px;
+}
+
+.profile-box {
+   background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);   /* Slate Blue */
+  padding: 25px;
+   margin-top: 30px;
+  border-radius: 22px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+.mini-avatar {
+  width: 70px;
+  height: 70px;
+  background: #6366f1;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  overflow: hidden;   /* important */
+  color: white;
+  font-size: 20px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-logo {
+  width: 35px;
+  margin: 10px auto;
+}
+
+.menu-section {
+  margin-bottom: 25px;
+}
+
+.menu-section h5 {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.menu-section p {
+  margin: 8px 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-section p:hover {
+  color: #f97316;
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: #f97316;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  min-height: 180px;
+}
+
+.card h4 {
+  margin-bottom: 15px;
+}
+
+/* REVIEWS */
+
+.review-item {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.review-avatar {
+  width: 38px;
+  height: 38px;
+  background: #6366f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+
+.review-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.review-text {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+  background: white;
+  border-radius: 28px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.big-avatar {
+  width: 120px;
+  height: 120px;
+  background: #6366f1;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;   /* IMPORTANT */
+}
+
+.big-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exam-info {
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.bio {
+  font-size: 14px;
+  opacity: 0.8;
+  margin: 15px 0 25px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+}
+
+.stats h4 {
+  margin: 0;
+}
+
+.stats span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.edit-btn {
+  padding: 12px 20px;
+  border-radius: 14px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Remove right panel column */
+.settings-mode {
+  grid-template-columns: 260px 1fr;
+}
+
+.settings-mode .right-panel {
+  display: none;
+}
+
+/* Settings Layout */
+.settings-page {
+  padding: 40px;
+}
+
+.settings-title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.settings-subtitle {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 25px;
+}
+
+/* Tabs */
+.settings-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.settings-tabs button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.active-tab {
+  background: #6366f1;
+  color: white;
+}
+
+.danger-tab {
+  color: #dc2626;
+}
+
+/* Card */
+.settings-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.settings-card input {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.primary-btn {
+  background: #6366f1;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar p {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sidebar p:hover {
+  opacity: 0.8;
+}
+
+.active-menu {
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+}
+
+.active-menu::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 6px;
+  width: 4px;
+  height: 18px;
+  background: #6366f1;
+  border-radius: 4px;
+}
+
+.user-email {
+  font-size: 14px;
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+/* ================= DASHBOARD TABLE ================= */
+
+.dashboard-table {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Common */
+.col {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* SUBJECT BADGE (Teach) */
+.subject-badge {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+/* SUBJECT BADGE (Learn different color) */
+.learn-subject {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+/* TOPIC BADGE */
+.topic-badge {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* LEVEL BADGE BASE */
+.level-badge {
+  font-size: 12px;
+}
+
+/* LEVEL COLORS */
+.level-badge.basic {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.level-badge.intermediate {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.level-badge.advanced {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Empty text */
+.empty-small {
+  font-size: 13px;
+  color: #9ca3af;
+}

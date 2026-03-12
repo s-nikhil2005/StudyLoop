@@ -1,0 +1,171 @@
+.teachskills-wrapper {
+  padding: 10px 0;
+}
+
+/* Card */
+.skills-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* Header */
+.skills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.skills-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.add-skill-btn {
+  padding: 8px 18px;
+  border: 2px solid #4f46e5;
+  background: transparent;
+  border-radius: 30px;
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.add-skill-btn:hover {
+  background: #eef2ff;
+}
+
+/* Skill List */
+.skills-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skills-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  transition: 0.2s ease;
+}
+
+.skills-row:hover {
+  background: #f3f4f6;
+}
+
+.skill-col {
+  font-size: 14px;
+}
+
+.subject-col {
+  font-weight: 600;
+}
+
+.level-col {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.topic-col {
+  color: #374151;
+}
+
+.remove-col {
+  cursor: pointer;
+  font-weight: bold;
+  color: #9ca3af;
+  font-size: 18px;
+  text-align: right;
+}
+
+.remove-col:hover {
+  color: #dc2626;
+}
+
+.remove-skill {
+  cursor: pointer;
+  font-weight: bold;
+  color: #6b7280;
+}
+
+.remove-skill:hover {
+  color: #dc2626;
+}
+
+.empty-text {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Modal */
+.skill-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.skill-modal {
+  background: white;
+  width: 450px;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.modal-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.skill-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.skill-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #6d5efc, #4f46e5);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}

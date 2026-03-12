@@ -1,0 +1,45 @@
+.conversation-list{
+width:320px;
+border-right:1px solid #ddd;
+background:white;
+display:flex;
+flex-direction:column;
+height:100%;
+}
+
+.conversation-header{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+.header-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:8px;
+}
+
+.header-icons{
+display:flex;
+gap:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+.message-search{
+width:100%;
+padding:6px 10px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+.conversation-body{
+flex:1;
+overflow-y:auto;
+}
+
+.empty-text{
+padding:15px;
+color:#777;
+font-size:14px;
+}

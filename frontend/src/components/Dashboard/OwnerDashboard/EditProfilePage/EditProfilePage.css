@@ -1,0 +1,38 @@
+.edit-container {
+  background: #ffffff;
+  padding: 30px 40px;
+  grid-column: span 2;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  min-height: 600px;
+}
+
+/* Header */
+.edit-container h2 {
+  margin-bottom: 5px;
+}
+
+.sub-text {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Tabs */
+.edit-tabs {
+  display: flex;
+  gap: 40px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.edit-tabs span {
+  cursor: pointer;
+  padding-bottom: 6px;
+}
+
+.active-tab {
+  color: #5b5be3;
+  border-bottom: 2px solid #5b5be3;
+  font-weight: 500;
+}
+

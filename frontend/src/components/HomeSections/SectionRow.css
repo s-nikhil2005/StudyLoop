@@ -1,0 +1,17 @@
+.section-row{
+  width:100%;
+  margin-bottom:40px;
+}
+
+.section-title{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+/* GRID FOR 4 CARDS */
+.cards-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:20px;
+}

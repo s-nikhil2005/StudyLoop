@@ -1,0 +1,164 @@
+.hoverCardWrapper{
+  position: relative;
+  display: block;
+}
+
+/* bring hovered card above others */
+
+.hoverCardWrapper:hover{
+  z-index: 9999;
+}
+
+/* =========================
+   Hover Panel
+========================= */
+
+.hoverPanel{
+
+  position: absolute;
+
+  top: 0; /* align with card top */
+
+  width: 360px;
+  min-height: 100%;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  box-shadow: 0 20px 45px rgba(0,0,0,0.20);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: 10000;
+
+  animation: fadeIn .2s ease;
+}
+
+/* open right */
+
+.hoverPanel.right{
+  left: 100%;
+  margin-left: 12px;
+}
+
+/* open left */
+
+.hoverPanel.left{
+  right: 100%;
+  margin-right: 12px;
+}
+
+/* =========================
+   Typography
+========================= */
+
+.hoverTitle{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.hoverDescription{
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.hoverList{
+  margin-top: 14px;
+  padding-left: 18px;
+}
+
+.hoverList li{
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.hoverActions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.hoverPrimaryBtn{
+
+  flex: 1;
+
+  padding: 12px;
+
+  background: linear-gradient(90deg,#7c3aed,#ec4899);
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.hoverPrimaryBtn:hover{
+  opacity: .9;
+}
+
+/* wishlist */
+
+.wishlistBtn{
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  border: 2px solid #7c3aed;
+
+  background: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all .2s ease;
+}
+
+.wishlistBtn:hover{
+  background: #7c3aed;
+  color: white;
+}
+
+/* =========================
+   Animation
+========================= */
+
+@keyframes fadeIn{
+
+  from{
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}

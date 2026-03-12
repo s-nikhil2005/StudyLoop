@@ -1,0 +1,35 @@
+.cards-wrapper {
+  background:#f4f4f4;
+  border-radius:25px;
+  padding:30px;
+  grid-column: span 2;
+}
+
+.cards-subtitle{
+  color:#6b7280;
+  margin-bottom:20px;
+}
+
+.cards-tabs{
+  display:flex;
+  gap:20px;
+  border-bottom:2px solid #ddd;
+  padding-bottom:10px;
+  margin-bottom:25px;
+}
+
+.cards-tabs span{
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.cards-tabs span:hover{
+  background:#e7e7ff;
+}
+
+.active-tab{
+  background:#e0e7ff;
+  color:#4f46e5;
+}

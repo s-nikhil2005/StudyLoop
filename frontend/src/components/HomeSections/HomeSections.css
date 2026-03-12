@@ -1,0 +1,98 @@
+/* Section container */
+.homeSectionsContainer {
+
+  max-width: 1200px;
+  margin: 15px auto;
+  padding: 0 20px;
+
+}
+
+
+/* Grid layout */
+.homeSectionsGrid {
+
+  display: grid;
+
+ grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+
+   justify-content: start;
+
+  align-items: stretch;
+
+  /* gap: 10px;    */
+
+}
+
+
+/* Card wrapper */
+.cardWrapper {
+
+  width: 100%;
+  max-width: 360px;
+
+  margin: 0 auto;
+
+  transform: scale(0.8); 
+  
+  transform-origin: top center;/* reduce card size slightly but not too much */
+
+  margin-bottom: -30px; /* adjust this */
+
+  
+}
+
+
+/* Ensure card fills wrapper */
+.cardWrapper > * {
+
+  width: 100%;
+
+}
+
+/* Section title for all sections */
+
+.sectionTitle{
+
+  font-size:30px;
+
+  font-weight:700;   /* makes Recommended, Top Rated bold */
+
+  margin-bottom:10px; 
+  margin-left: 35px;
+
+  text-align:left;
+
+  color:#111827;
+
+}
+
+
+/* Subject word like Physics */
+
+.sectionSubject{
+
+  font-weight:800;   /* extra bold */
+   
+  /* margin-left: 35px; */
+  color:#111827;
+
+}
+
+
+/* Reason text */
+
+.sectionReason{
+
+  font-weight:500;
+
+  color:#6b7280;
+
+  font-size:20px;
+
+}
+
+/* Add top margin only to the first section */
+
+.homePageContainer > section:first-child {
+  margin-top: 40px;
+}

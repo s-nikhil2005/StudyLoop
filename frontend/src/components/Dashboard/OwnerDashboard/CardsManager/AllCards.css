@@ -1,0 +1,126 @@
+.cards-manager{
+  padding:20px;
+}
+
+.cards-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.cards-header h3{
+  font-size:16px;
+  font-weight:600;
+  color:#4f46e5;
+  background:#eef2ff;
+  padding:6px 12px;
+  border-radius:8px;
+}
+
+.menu-wrapper{
+  position:relative;
+}
+
+/* hamburger */
+
+.hamburger{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:22px;
+  height:2px;
+  background:#333;
+}
+
+/* dropdown */
+
+.menu-dropdown{
+  position:absolute;
+  top:30px;
+
+  /* SHIFT LEFT */
+  right:-40px;
+
+  width:260px;
+
+  background:white;
+  border-radius:14px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+  padding:15px;
+}
+
+/* section title */
+
+.menu-title{
+  font-weight:600;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+/* cards container */
+
+.menu-section{
+  margin-top:10px;
+}
+
+/* card */
+
+.menu-card{
+  background:#f4f5f7;
+  border-radius:10px;
+
+  padding:12px;
+  margin-bottom:10px;
+}
+
+/* topic */
+
+.card-topic{
+  font-weight:600;
+  font-size:15px;
+}
+
+/* level */
+
+.card-level{
+  font-size:13px;
+  color:#777;
+  margin-top:4px;
+}
+
+/* price */
+
+.card-price{
+  font-size:14px;
+  margin-top:4px;
+  color:#444;
+}
+
+.card-display{
+  margin-top:20px;
+}
+
+.cards-error{
+  background:#fee2e2;
+  color:#b91c1c;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+}
+
+.cards-loading{
+  padding:20px;
+  color:#555;
+}
+
+.cards-empty{
+  padding:20px;
+  color:#777;
+}

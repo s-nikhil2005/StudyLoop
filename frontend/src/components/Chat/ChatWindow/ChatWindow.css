@@ -1,0 +1,31 @@
+.chat-window{
+flex:1;
+display:flex;
+flex-direction:column;
+height:100%;
+background:white;
+}
+
+/* chat header */
+
+.chat-header{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+/* message list scroll area */
+
+.message-list{
+flex:1;
+overflow-y:auto;
+padding:15px;
+background:#fafafa;
+}
+
+/* message input always visible */
+
+.message-input{
+border-top:1px solid #eee;
+padding:10px;
+background:white;
+}

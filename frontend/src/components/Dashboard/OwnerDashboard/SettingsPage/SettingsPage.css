@@ -1,0 +1,376 @@
+.settings-wrapper {
+  background: #f3f3f3;
+  border-radius: 25px;
+  padding: 30px;
+  grid-column: span 2;
+}
+
+.settings-subtitle {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+
+.settings-tabs button {
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.settings-tabs button:hover {
+  background: #e7e7ff;
+}
+
+.active-tab {
+  background: #e0e7ff;   /* light indigo background */
+  color: #4f46e5;        /* strong indigo text */
+}
+
+.danger-tab {
+  color: #b91c1c;
+}
+
+.settings-content {
+  max-width: 450px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-section input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.primary-btn {
+  padding: 12px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.danger-zone {
+  color: #b91c1c;
+}
+
+.delete-btn {
+  padding: 12px;
+  border: none;
+  background: #dc2626;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+/* ================= EMAIL SECTION FIX ================= */
+
+.email-display {
+  display: flex;
+  align-items: center;   /* 👈 aligns pencil with box bottom */
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.email-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.email-box {
+  background: #ffffff;     /* 👈 cleaner white instead of grey */
+  border: 1px solid #e5e7eb;
+  padding: 16px 18px;
+  border-radius: 14px;
+  min-width: 420px;
+  font-size: 15px;
+  color: #111827;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.edit-email-btn {
+  padding: 0 14px;
+  height: 50px;
+  width: auto;
+  border: 1.5px solid #6366f1;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6366f1;
+  transition: all 0.25s ease;
+  margin-top: 30px;
+}
+
+/* .edit-email-btn:hover {
+  background: #eef2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(99,102,241,0.25);
+} */
+
+/* ================= FULL SCREEN MODAL ================= */
+/* ================= OVERLAY ================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ================= MODAL CARD ================= */
+
+.modal-container {
+  background: #ffffff;
+  width: 520px;
+  max-width: 92%;
+  border-radius: 18px;
+  padding: 36px 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* ================= HEADER ================= */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-container h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #374151;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.modal-description {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* ================= FORM ================= */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.required {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  margin-left: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 14px;
+  background: #ffffff;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+/* ================= NOTE ================= */
+
+.security-note {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* ================= BUTTON ================= */
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.primary-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6d5efc, #4f46e5);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.primary-btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Error Box */
+.form-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #fecaca;
+}
+
+.error-icon {
+  background: #dc2626;
+  color: white;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Input error highlight */
+.input-error {
+  border: 1px solid #dc2626 !important;
+  background: #fef2f2;
+}
+
+/* Disabled button */
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.error-icon {
+  background: #ef4444;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-error {
+  border: 1px solid #ef4444;
+}
+
+.form-success {
+  background: #dcfce7;
+  color: #166534;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  border: 1px solid #bbf7d0;
+}
+
+.success-icon {
+  background: #22c55e;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.danger-zone {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.danger-warning {
+  color: #d32f2f;
+  margin-bottom: 15px;
+}
+
+.delete-btn {
+  background: #e53935;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+}
