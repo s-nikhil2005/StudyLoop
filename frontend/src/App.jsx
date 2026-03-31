@@ -6,7 +6,15 @@ import VerifyOtpPage from "./pages/VerifyOtp";
 import MainPage from "./pages/MainPage";
 import UpdatePassword from "./pages/UpdatePassword";
 import OwnerDashboardPage from "./pages/OwnerDashboard";
+import PublicProfile from "./pages/publicDashboard";
+import CartPage from "./pages/cartPage";
 import ChatPage from "./pages/chatPage";
+import HostSessionPage from "./pages/HostSessionPage";
+import JoinSessionPage from "./pages/JoinSessionPage";
+import StudyRoom from "./pages/StudyRoom";
+import SearchPage from "./pages/SearchPage";
+
+import HostPage from "./pages/HostPage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -90,6 +98,27 @@ function App() {
         }
       />
 
+      <Route 
+      path="/user/:userId" 
+      element={
+      <ProtectedRoute>
+            < PublicProfile/>
+           </ProtectedRoute>
+      } />
+
+      <Route
+  path="/wishlist"
+  element={
+    <ProtectedRoute>
+      <CartPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route path="/search"
+ element={<SearchPage />} />
+
+
      <Route
   path="/chat"
   element={
@@ -108,6 +137,23 @@ function App() {
     </ProtectedRoute>
   }
 />
+
+
+
+  
+        <Route path="/host" element={<HostPage />} />
+
+      
+      <Route path="/join-class" element={<JoinSessionPage />} />
+
+      <Route path="/create-class" element={<HostSessionPage />} />
+      <Route path="/create-class/:roomCode?" element={<HostSessionPage />} />
+
+<Route path="/study-room/:roomCode" element={<StudyRoom />} />
+
+
+
+
 
     </Routes>
 

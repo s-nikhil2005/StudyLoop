@@ -87,7 +87,7 @@ const profileSchema = new mongoose.Schema({
   headline: {
   type: String,
   trim: true,
-  maxlength: 60
+  maxlength: 20
 },
 
 

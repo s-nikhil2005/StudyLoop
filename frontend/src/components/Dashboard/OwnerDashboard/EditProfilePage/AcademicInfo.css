@@ -1,0 +1,37 @@
+.academic-container {
+  max-width: 720px;
+  padding: 20px 30px;
+}
+
+.form-section {
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.profile-select {
+  width: 40%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background-color: #f6f6f6;
+}
+
+.profile-save-btn {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: #5b5ce2;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.profile-save-btn:hover {
+  opacity: 0.9;
+}

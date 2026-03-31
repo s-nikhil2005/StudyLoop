@@ -27,25 +27,7 @@ async function markAsRead(messageId, userId) {
   if (!message) {
     throw new Error("Message not found");
   }
-async function markAsRead(messageId, userId) {
 
-  const message = await Message.findOne({ messageId });
-
-  if (!message) {
-    throw new Error("Message not found");
-  }
-
-  // Only receiver can mark message as read
-  if (message.receiverId.toString() !== userId) {
-    throw new Error("You cannot mark this message as read");
-  }
-
-  message.read = true;
-
-  await message.save();
-
-  return message;
-}
   // Only receiver can mark message as read
   if (message.receiverId.toString() !== userId) {
     throw new Error("You cannot mark this message as read");

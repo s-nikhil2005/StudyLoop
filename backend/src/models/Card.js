@@ -151,4 +151,4 @@ cardSchema.index(
 { unique: true }
 );
 
-module.exports = mongoose.model("Card", cardSchema);
+module.exports =mongoose.models.Card ||  mongoose.model("Card", cardSchema);

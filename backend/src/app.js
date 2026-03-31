@@ -7,6 +7,8 @@ const profileRoutes = require('./routes/profileRoutes');
 const cardRoutes = require('./routes/cardRoutes');
 const homepageRoutes = require('./routes/homePageRoute');
 const chatRouters = require('./routes/chatRouters');
+const cartRouters = require('./routes/cartRouters');
+const ratingRoutes = require("./routes/ratingRoutes");
 const {redisMiddleware} = require('./middlewares/redisMiddleware');
 
 const app = express();
@@ -36,7 +38,8 @@ app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/cards', cardRoutes);
 app.use('/api/v1/homepage', homepageRoutes);
 app.use('/api/v1/chat', chatRouters);
-
+app.use('/api/v1/cart', cartRouters);
+app.use("/api/v1/ratings", ratingRoutes);
 
 app.get("/", (req, res) => {
    res.send("Study Loop backend is running successfully!");

@@ -1,146 +1,103 @@
-.hoverCardWrapper{
+.hoverCardWrapper {
   position: relative;
   display: block;
-}
-
-/* bring hovered card above others */
-
-.hoverCardWrapper:hover{
-  z-index: 9999;
 }
 
 /* =========================
    Hover Panel
 ========================= */
 
-.hoverPanel{
+.hoverPanel {
+  position: absolute; /* ✅ attached to card */
 
-  position: absolute;
-
-  top: 0; /* align with card top */
+  top: 0; /* 🔥 always aligned with card */
 
   width: 360px;
-  min-height: 100%;
+  height: 100%;
 
   background: #ffffff;
-
   border-radius: 16px;
+  padding: 20px;
 
-  padding: 22px;
-
-  box-shadow: 0 20px 45px rgba(0,0,0,0.20);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 12px;
 
-  z-index: 10000;
+  z-index: 1000;
 
-  animation: fadeIn .2s ease;
-}
+  overflow: hidden;
 
-/* open right */
-
-.hoverPanel.right{
-  left: 100%;
-  margin-left: 12px;
-}
-
-/* open left */
-
-.hoverPanel.left{
-  right: 100%;
-  margin-right: 12px;
+  animation: fadeIn 0.2s ease;
 }
 
 /* =========================
    Typography
 ========================= */
 
-.hoverTitle{
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
+.hoverTeachBlock {
+  margin-bottom: 4px;
 }
 
-.hoverDescription{
+.hoverSubject {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.hoverTopic {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.hoverDescription {
   font-size: 14px;
   color: #555;
-  margin-top: 6px;
   line-height: 1.4;
-}
-
-.hoverList{
-  margin-top: 14px;
-  padding-left: 18px;
-}
-
-.hoverList li{
-  margin-bottom: 6px;
-  font-size: 14px;
 }
 
 /* =========================
    Buttons
 ========================= */
 
-.hoverActions{
+.hoverActions {
+  margin-top: auto; /* ✅ keeps bottom alignment */
+
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 15px;
+  gap: 10px;
 }
 
-.hoverPrimaryBtn{
-
+.hoverPrimaryBtn {
   flex: 1;
-
-  padding: 12px;
-
+  padding: 11px;
   background: linear-gradient(90deg,#7c3aed,#ec4899);
-
   border: none;
-
   border-radius: 10px;
-
   color: white;
-
   font-weight: 600;
-
   cursor: pointer;
-
-  transition: 0.2s ease;
 }
 
-.hoverPrimaryBtn:hover{
-  opacity: .9;
+.hoverPrimaryBtn:hover {
+  opacity: 0.9;
 }
 
-/* wishlist */
-
-.wishlistBtn{
-
-  width: 46px;
-  height: 46px;
-
+.wishlistBtn {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-
   border: 2px solid #7c3aed;
-
   background: white;
-
-  font-size: 20px;
-
+  font-size: 18px;
   cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  transition: all .2s ease;
 }
 
-.wishlistBtn:hover{
+.wishlistBtn:hover {
   background: #7c3aed;
   color: white;
 }
@@ -149,16 +106,13 @@
    Animation
 ========================= */
 
-@keyframes fadeIn{
-
-  from{
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
-
-  to{
+  to {
     opacity: 1;
     transform: translateY(0);
   }
-
 }

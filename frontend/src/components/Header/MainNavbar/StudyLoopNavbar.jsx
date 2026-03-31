@@ -6,6 +6,7 @@ import ExploreDropdown from "../../exploreData/ExploreDropdown";
 import { logoutUser } from "../../../services/userService";
 import { getUnreadCount } from "../../../services/chatServices";
 import { getCurrentUser } from "../../../services/userService";
+import { navbarSearch } from "../../../services/cardServices";
 import { useAuth } from "../../../hooks/useAuth";
 import "./StudyLoopNavbar.css";
 
@@ -13,6 +14,10 @@ function StudyLoopNavbar() {
 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
+
+  const [search, setSearch] = useState("");
+const [results, setResults] = useState([]);
+const [showResults, setShowResults] = useState(false);
 
   const [notificationCount, setNotificationCount] = useState(0);
 
@@ -102,152 +107,157 @@ function StudyLoopNavbar() {
     }
   };
 
+  const handleSearch = async (e) => {
+  const value = e.target.value;
+  setSearch(value);
+
+  // empty input
+  if (!value.trim()) {
+    setResults([]);
+    setShowResults(false);
+    return;
+  }
+
+  try {
+    const data = await navbarSearch(value);
+
+    setResults(data.cards || []);
+    setShowResults(true);
+
+  } catch (err) {
+    console.error("Search error:", err);
+  }
+};
+
   return (
-    <nav className="w-full bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center">
+   <nav className="navbar">
+  <div className="navbar-container">
 
-        {/* LEFT SECTION */}
-        <div className="flex items-center gap-6">
-          <Link to="/main">
-            <img
-              src={Logo}
-              alt="StudyLoop"
-              className="h-9 w-auto object-contain"
-            />
-          </Link>
+    {/* LEFT SECTION */}
+    <div className="nav-left">
+      <Link to="/main">
+        <img src={Logo} alt="StudyLoop" className="logo" />
+      </Link>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setIsExploreOpen(true)}
-            onMouseLeave={() => setIsExploreOpen(false)}
-          >
-            <span className="text-sm font-medium text-gray-700 hover:text-indigo-600 cursor-pointer">
-              Explore
-            </span>
-            {isExploreOpen && <ExploreDropdown />}
-          </div>
+      <div
+        className="nav-item relative"
+        onMouseEnter={() => setIsExploreOpen(true)}
+        onMouseLeave={() => setIsExploreOpen(false)}
+      >
+        <span>Explore</span>
+        {isExploreOpen && <ExploreDropdown />}
+      </div>
 
-          <Link
-            to="/subscribe"
-            className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition"
-          >
-            Subscribe
-          </Link>
-        </div>
+      <Link to="/subscribe" className="nav-item">
+        Subscribe
+      </Link>
+    </div>
 
-        {/* CENTER SEARCH */}
-        <div className="hidden md:flex flex-1 mx-10">
-          <input
-            type="text"
-            placeholder="Search students, skills, or topics"
-            className="w-full px-6 py-2.5 rounded-full border border-gray-300 text-sm focus:outline-none focus:border-indigo-500"
-          />
-        </div>
+    {/* CENTER SEARCH */}
+    <div className="nav-search">
+      <input
+        type="text"
+        placeholder="Search students, skills, or topics"
+        value={search}
+        onChange={handleSearch}
+        onFocus={() => setShowResults(true)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            navigate(`/search?q=${search}`);
+            setShowResults(false);
+          }
+        }}
+      />
 
-        {/* HOST + TEACH SECTION */}
-        {user && (
-          <div className="hidden lg:flex items-center gap-6 mr-6">
-            <button
-              onClick={() => navigate("/host")}
-              className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition"
-            >
-              Host
-            </button>
-
-            <button
-              onClick={() => navigate("/teach")}
-              className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition"
-            >
-              Teach on StudyLoop
-            </button>
-          </div>
-        )}
-
-        {/* RIGHT SECTION */}
-        <div className="flex items-center gap-6 ml-auto">
-
-          <Link to="/wishlist">
-            <Heart className="w-5 h-5 text-gray-700 hover:text-indigo-600 transition" />
-          </Link>
-
-          {/* 🔔 Notification Bell */}
-          <div
-            className="relative cursor-pointer"
-            onClick={() => navigate('/chat')}
-          >
-            <Bell className="w-5 h-5 text-gray-700 hover:text-indigo-600 transition" />
-
-            {notificationCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">
-                {notificationCount}
-              </span>
-            )}
-          </div>
-
-          {/* PROFILE */}
-          {user && (
-            <div
-              className="relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+      {showResults && (
+        <div className="search-dropdown">
+          {results.length > 0 ? (
+            results.map((card) => (
               <div
-                className="w-9 h-9 bg-indigo-600 text-white flex items-center justify-center rounded-full text-sm font-semibold cursor-pointer"
+                key={card._id}
+                className="search-item"
+                onClick={() => window.open(`/card/${card._id}`, "_blank")}
+              >
+                <p className="search-title">{card.teach.topic}</p>
+                <p className="search-sub">
+                  {card.teach.subject} • {card.user?.username}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="no-result">No cards available</p>
+          )}
+        </div>
+      )}
+    </div>
+
+    <div className="nav-end">
+    {/* HOST + TEACH */}
+    {user && (
+      <div className="nav-actions">
+        <button onClick={() => navigate("/host")}>Host</button>
+        <button onClick={() => navigate("/teach")}>
+          Teach on StudyLoop
+        </button>
+      </div>
+    )}
+
+    {/* RIGHT */}
+    <div className="nav-right">
+      <Link to="/wishlist">
+        <Heart />
+      </Link>
+
+      <div className="notification" onClick={() => navigate('/chat')}>
+        <Bell />
+        {notificationCount > 0 && (
+          <span className="badge">{notificationCount}</span>
+        )}
+      </div>
+
+      {user && (
+        <div
+          className="profile-wrapper"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div
+            className="profile"
+            onClick={() => navigate("/owner-dashboard")}
+          >
+            {user.username
+              ?.split(" ")
+              .map(word => word[0])
+              .join("")
+              .toUpperCase()}
+          </div>
+
+          {isProfileOpen && (
+            <div className="profile-dropdown">
+              <div
+                className="profile-header"
                 onClick={() => navigate("/owner-dashboard")}
               >
-                {user.username
-                  ?.split(" ")
-                  .map(word => word[0])
-                  .join("")
-                  .toUpperCase()}
+                <p className="name">{user.username}</p>
+                <p className="email">{user.email}</p>
               </div>
 
-              {isProfileOpen && (
-                <div className="absolute right-0 top-12 w-64 bg-white border border-gray-200 rounded-xl shadow-lg py-3 text-sm">
+              <Link to="/owner-dashboard">User Profile</Link>
+              <Link to="/my-learning">My Learning</Link>
+              <Link to="/chat">Messages</Link>
 
-                  <div
-                    className="px-4 pb-3 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition"
-                    onClick={() => navigate("/owner-dashboard")}
-                  >
-                    <p className="font-semibold text-gray-900">
-                      {user.username}
-                    </p>
-                    <p className="text-xs text-gray-500 truncate">
-                      {user.email}
-                    </p>
-                  </div>
-
-                  <div className="py-2">
-                    <Link to="/owner-dashboard" className="block px-4 py-2 hover:bg-gray-100">
-                      User Profile
-                    </Link>
-
-                    <Link to="/my-learning" className="block px-4 py-2 hover:bg-gray-100">
-                      My Learning
-                    </Link>
-
-                    <Link to="/messages" className="block px-4 py-2 hover:bg-gray-100">
-                      Messages
-                    </Link>
-                  </div>
-
-                  <div className="border-t border-gray-100 my-2"></div>
-
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
-                  >
-                    Logout
-                  </button>
-
-                </div>
-              )}
+              <button onClick={handleLogout} className="logout">
+                Logout
+              </button>
             </div>
           )}
-
         </div>
-      </div>
-    </nav>
+      )}
+    </div>
+
+  </div>
+  </div>
+</nav>
   );
 }
 

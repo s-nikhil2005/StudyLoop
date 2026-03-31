@@ -1,80 +1,160 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./HoverCard.css";
+import {
+  addToCart,
+  removeFromCart,
+  getCart,
+} from "../../services/cartServices";
 
-export default function HoverCard({ children }) {
+// ✅ NEW IMPORT
+import RatingModal from "../RatingModal/RatingModal";
+
+export default function HoverCard({ children, data }) {
 
   const [hover, setHover] = useState(false);
-  const [direction, setDirection] = useState("right");
+  const [position, setPosition] = useState({
+    left: 0,
+    height: 0
+  });
+
+  // ✅ EXISTING
+  const [liked, setLiked] = useState(false);
+
+  // ✅ NEW STATE (rating modal)
+  const [showRating, setShowRating] = useState(false);
 
   const cardRef = useRef(null);
+  console.log("FULL CARD DATA:", data);
+
+  // ✅ EXISTING LOGIC (UNCHANGED)
+  useEffect(() => {
+    const checkCart = async () => {
+      try {
+        const res = await getCart();
+
+        const exists = res.items?.some(
+          (item) => item._id === data?._id
+        );
+
+        setLiked(exists);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (data?._id) checkCart();
+  }, [data?._id]);
+
+  // ✅ EXISTING LOGIC (UNCHANGED)
+  const handleWishlistClick = async () => {
+    try {
+      if (liked) {
+        await removeFromCart(data._id);
+        setLiked(false);
+      } else {
+        await addToCart(data._id);
+        setLiked(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleMouseEnter = () => {
-
     const rect = cardRef.current.getBoundingClientRect();
 
-    const screenWidth = window.innerWidth;
+    const panelWidth = 360;
+    const gap = 12;
 
-    const spaceRight = screenWidth - rect.right;
+    const spaceRight = window.innerWidth - rect.right;
 
-    if (spaceRight < 380) {
-      setDirection("left");
+    let left;
+
+    if (spaceRight >= panelWidth + gap) {
+      left = rect.width + gap;
     } else {
-      setDirection("right");
+      left = -panelWidth - gap;
     }
+
+    setPosition({
+      left,
+      height: rect.height
+    });
 
     setHover(true);
   };
 
   const handleMouseLeave = () => {
-    setHover(false);
+    setTimeout(() => setHover(false), 100);
   };
 
   return (
+    <>
+      <div
+        ref={cardRef}
+        className="hoverCardWrapper"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {children}
 
-    <div
-      ref={cardRef}
-      className="hoverCardWrapper"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+        {hover && (
+          <div
+            className="hoverPanel"
+            style={{
+              left: position.left,
+              height: position.height
+            }}
+          >
+            {/* TEACH SECTION */}
+            <div className="hoverTeachBlock">
+              <h3 className="hoverSubject">
+                {data?.teach?.subject} - {data?.teach?.level}
+              </h3>
 
-      {children}
+              <p className="hoverTopic">
+                {data?.teach?.topic}
+              </p>
+            </div>
 
-      {hover && (
+            {/* DESCRIPTION */}
+            <p className="hoverDescription">
+              {data?.description?.trim()
+                ? data.description
+                : "No description available"}
+            </p>
 
-        <div className={`hoverPanel ${direction}`}>
+            {/* BUTTONS */}
+            <div className="hoverActions">
 
-          <h3 className="hoverTitle">
-            Node.js - Beginner to Advance
-          </h3>
+              {/* ✅ UPDATED RATING BUTTON */}
+              <button
+                className="hoverPrimaryBtn"
+                onClick={() => setShowRating(true)}
+              >
+                Rating
+              </button>
 
-          <p className="hoverDescription">
-            Learn backend development with Node.js and Express.
-          </p>
+              {/* ✅ EXISTING WISHLIST */}
+              <button
+                className="wishlistBtn"
+                onClick={handleWishlistClick}
+              >
+                {liked ? "❤️" : "🤍"}
+              </button>
 
-          <ul className="hoverList">
-            <li>Deep understanding of JavaScript</li>
-            <li>Build scalable Node.js apps</li>
-            <li>Authentication with JWT</li>
-          </ul>
-
-          <div className="hoverActions">
-
-            <button className="hoverPrimaryBtn">
-              Book Session
-            </button>
-
-            <button className="wishlistBtn">
-              ❤
-            </button>
-
+            </div>
           </div>
+        )}
+      </div>
 
-        </div>
-
+      {/* ✅ NEW MODAL */}
+      {showRating && (
+        <RatingModal
+          card={data}
+          onClose={() => setShowRating(false)}
+        />
       )}
-
-    </div>
-
+    </>
   );
 }

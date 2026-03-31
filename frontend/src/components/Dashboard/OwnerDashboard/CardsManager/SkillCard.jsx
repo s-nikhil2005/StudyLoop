@@ -1,7 +1,7 @@
 import "./SkillCard.css";
 import { useNavigate } from "react-router-dom";
 
-export default function SkillCard({ card , profilePhoto, onEditImage}) {
+export default function SkillCard({ card , profilePhoto, onEditImage, userRating}) {
 
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const handleChat = () => {
 
 
   const data = card;
-  const type = data?.type === "paid" ? "paid" : "teachLearn";
+  const type = data?.type=== "paid" ? "paid" : "teachLearn";
 
   const teachSkills = [
     data?.teach?.subject,
@@ -52,7 +52,7 @@ const handleChat = () => {
       <div className="statsBar">
 
         <div>
-          <strong>{data?.rating || 0}</strong>
+      <strong>{userRating?.avgRating || 0}</strong>
           <span>Rating</span>
         </div>
 
@@ -62,7 +62,7 @@ const handleChat = () => {
         </div>
 
         <div>
-          <strong>{data?.reviews || 0}</strong>
+          <strong>{userRating?.totalReviews || 0}</strong>
           <span>Reviews</span>
         </div>
 
@@ -119,9 +119,12 @@ const handleChat = () => {
         {/* BUTTONS */}
         <div className="cardActions">
 
-          <button className="btnOutline">
-            View Profile
-          </button>
+         <button
+  className="btnOutline"
+  onClick={() => navigate(`/user/${card?.user?._id}`)}
+>
+  View Profile
+</button>
 
           {type === "teachLearn" && (
             <button className="btnPrimary"

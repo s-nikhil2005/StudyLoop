@@ -1,0 +1,190 @@
+.publicProfileContainer {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* ================= TOP SECTION ================= */
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* LEFT SIDE */
+.topLeft {
+  flex: 1;
+}
+
+.topLeft h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+  margin-top: 8px;
+}
+
+.headline {
+  color: #6b7280;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+/* TAGS */
+.tagsRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tagsRow span {
+  background: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* RIGHT SIDE IMAGE */
+.topRight {
+  flex-shrink: 0;
+}
+
+.topRight img {
+  width: 150px;
+  height: 150px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.avatarFallback {
+  width: 150px;
+  height: 150px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #7b61ff, #e94e77);
+  color: white;
+  font-size: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= STATS ================= */
+
+.statsSection {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: flex-start; /* prevent stretching */
+}
+
+.statBox {
+  min-width: 180px;
+  max-width: 220px;
+  flex: unset; /* ❗ important */
+  
+  background: #0f172a;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.statBox h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.statBox p {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ================= BIO ================= */
+
+.bioSection {
+  margin-bottom: 40px;
+}
+
+.bioSection h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.bioSection p {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* ================= CARDS ================= */
+
+.cardsSection {
+  /* margin-bottom: 10px; */
+  margin-left: -10px;
+}
+
+.cardsSection h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* MATCH YOUR HOME GRID */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  justify-content: start;
+  align-items: stretch;
+  gap: 10px;
+  margin-left: -20px;
+}
+
+/* CARD SCALE (same as homepage) */
+.cardsGrid > * {
+  transform: scale(0.85);
+  transform-origin: top center;
+}
+
+/* ================= LOADING ================= */
+
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .topSection {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .topRight img,
+  .avatarFallback {
+    width: 110px;
+    height: 110px;
+  }
+
+  .topLeft h1 {
+    font-size: 24px;
+  }
+
+  .statsSection {
+    flex-direction: column;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardsGrid > * {
+    transform: scale(1);
+  }
+}

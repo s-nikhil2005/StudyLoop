@@ -67,16 +67,16 @@ exports.updateBasicInfo = async (req, res) => {
       fullName,
       headline,
       bio,
-    //   classLevel,
-    //   examTarget,
+      classLevel,
+      examTarget,
       languages,
-    //   location
     } = req.body;
 
     const userId = req.user.id;
 
     let profile = await Profile.findOne({ user: userId });
 
+    // Create profile if not exists
     if (!profile) {
       const user = await User.findById(userId);
 
@@ -86,19 +86,27 @@ exports.updateBasicInfo = async (req, res) => {
       });
     }
 
+    // 🔥 Update fields (SAFE WAY)
     if (fullName !== undefined) profile.fullName = fullName;
-    if (headline !== undefined) profile.headline = headline;
+
+    if (headline !== undefined && headline.trim() !== "") {
+      profile.headline = headline;
+    }
+
     if (bio !== undefined) profile.bio = bio;
-    // if (classLevel !== undefined) profile.classLevel = classLevel;
-    // if (examTarget !== undefined) profile.examTarget = examTarget;
+
+    // ✅ FIXED PART (YOUR MAIN ISSUE)
+    if (classLevel !== undefined) profile.classLevel = classLevel;
+
+    if (examTarget !== undefined) profile.examTarget = examTarget;
+
     if (languages !== undefined) profile.languages = languages;
-    // if (location !== undefined) profile.location = location;
 
     await profile.save();
 
     res.json({
       success: true,
-      message: "Basic info updated",
+      message: "Profile updated successfully",
       profile
     });
 

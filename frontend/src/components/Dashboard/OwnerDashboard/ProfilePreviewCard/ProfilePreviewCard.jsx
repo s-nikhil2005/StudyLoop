@@ -1,4 +1,7 @@
 import "./ProfilePreviewCard.css";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function ProfilePreviewCard({
   profile,
@@ -6,7 +9,11 @@ export default function ProfilePreviewCard({
   onEditCards
 }) {
 
+
+  const navigate = useNavigate();
   if (!profile) return null;
+
+console.log("FULL PROFILE:", profile);
 
   // function to generate initials
   const getInitials = (name) => {
@@ -60,9 +67,12 @@ export default function ProfilePreviewCard({
           Edit Cards
         </button>
 
-        <button className="ppc-view-btn">
-          View Profile
-        </button>
+        <button
+  className="btnPrimary"
+  onClick={() => navigate(`/user/${profile?.user?._id}`)}
+>
+  View Profile
+</button>
 
       </div>
 

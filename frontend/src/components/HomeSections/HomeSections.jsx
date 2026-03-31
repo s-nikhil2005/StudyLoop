@@ -47,7 +47,7 @@ export default function HomeSections() {
 
             <div className="cardWrapper" key={card._id}>
               
-               <HoverCard >
+               <HoverCard data={card}>
               <SkillCard
                 card={card}
                 profilePhoto={card.user?.profilePhoto}

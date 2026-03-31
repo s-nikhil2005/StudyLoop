@@ -24,6 +24,7 @@ export const getHomepageCards = async (req, res) => {
 
     const allCards = await Card
       .find({ isActive: true })
+     .lean() 
       .populate("user", "name profilePhoto");
 
     const cards = allCards.filter(
@@ -38,11 +39,12 @@ export const getHomepageCards = async (req, res) => {
       teach: card.teach,
       learn: card.learn,
       price: card.price,
-      description: card.description,
+       description: (card.description || "").trim(),
       rating: card.stats?.rating || 0,
       sessions: card.stats?.sessions || 0,
       reviews: card.stats?.reviews || 0
     });
+
 
     const used = new Set();
 

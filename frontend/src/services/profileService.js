@@ -52,3 +52,4 @@ export const updateTeachingSkills = async (subjects) => {
   });
   return response.data;
 };
+

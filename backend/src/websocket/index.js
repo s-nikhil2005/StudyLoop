@@ -4,6 +4,10 @@ const { WebSocketServer } = require("ws");
 const { handleChatMessage } = require("./chatHandler");
 // Import chat logic
 
+const { handleWebRTCMessage } = require("./webrtcHandler");
+// Import WebRTC logic
+
+
 function startWebSocketServer(server) {
 
   const wss = new WebSocketServer({ server });
@@ -34,13 +38,30 @@ function startWebSocketServer(server) {
     console.log(`User connected: ${userId}`);
     console.log(`Active users: ${clients.size}`);
 
-    socket.on("message", (data) => {
+socket.on("message", (data) => {
 
-      console.log("Message received from:", userId);
+  console.log("Raw message:", data.toString());
 
-      handleChatMessage(data, clients);
+  let message;
 
-    });
+  try {
+    message = JSON.parse(data.toString());
+  } catch (err) {
+    console.log("❌ Invalid JSON received");
+    return;
+  }
+
+  console.log("Parsed message:", message);
+
+  if (message.webrtc) {
+    handleWebRTCMessage(message, clients, userId);
+  } else if (message.chat) {
+    handleChatMessage(message, clients);
+  } else {
+    console.log("⚠️ Unknown message type");
+  }
+
+});
 
     socket.on("close", () => {
 

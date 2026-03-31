@@ -142,7 +142,7 @@ const getUserCards = async (req, res) => {
 
   } catch (error) {
 
-    console.error("GET USER CARDS ERROR:", error);
+    // console.error("GET USER CARDS ERROR:", error);
 
     res.status(500).json({
       success: false,
@@ -307,6 +307,59 @@ const updateCardImage = async (req, res) => {
 
 };
 
+const getCardsByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const cards = await Card.find({ user: userId })
+      .populate("user", "username profilePhoto");
+
+    res.status(200).json({
+      success: true,
+      cards
+    });
+
+  } catch (error) {
+    console.error("Get Cards By User Error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch user cards"
+    });
+  }
+};
+
+const navbarSearch = async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    // ✅ safety check
+    if (!q || q.trim().length < 2) {
+      return res.json({ cards: [] });
+    }
+
+    const searchRegex = new RegExp(q, "i");
+
+    const cards = await Card.find({
+      isActive: true,
+      $or: [
+        { "teach.topic": searchRegex },
+        { "teach.subject": searchRegex },
+        { description: searchRegex }
+      ]
+    })
+      .populate("user", "username")
+      .limit(8);
+
+    res.json({ cards });
+
+  } catch (error) {
+    console.error("NAVBAR SEARCH ERROR:", error); // 👈 ADD THIS
+    res.status(500).json({
+      message: "Server error in navbar search"
+    });
+  }
+};
 
 module.exports = {
   createCard,
@@ -314,5 +367,7 @@ module.exports = {
   searchCards,
   getCard,
   deleteCard,
-    updateCardImage
+    updateCardImage,
+    getCardsByUserId,
+    navbarSearch
 };

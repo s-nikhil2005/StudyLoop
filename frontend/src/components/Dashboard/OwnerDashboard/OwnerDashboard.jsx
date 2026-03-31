@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./OwnerDashboard.css";
 import Logo from "../../../assets/Logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../../../services/userService";
 import SettingsPage from "./SettingsPage/SettingsPage";
 import EditProfilePage from "./EditProfilePage/EditProfilePage";
 import { useAuth } from "../../../hooks/useAuth";
@@ -9,38 +11,49 @@ import SkillsEditPage from "./SkillsEdit/SkillsEditPage";
 import ProfilePreviewCard from "./ProfilePreviewCard/ProfilePreviewCard";
 import CardsManager from "./CardsManager/CardsManager";
 import { getUserCards } from "../../../services/cardServices";
+import { getUserOverallRating } from "../../../services/ratingServices";
 
 
 export default function OwnerDashboard() {
-  const { user } = useAuth();
-
+  const { user , setUser } = useAuth();
+   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [activeMenu, setActiveMenu] = useState("dashboard");
   const [cards, setCards] = useState([]);
+  const [userRating, setUserRating] = useState(null);
 
 useEffect(() => {
-
   const fetchDashboardData = async () => {
-
     try {
-
       const profileRes = await getProfile();
       setProfile(profileRes.profile);
 
       const cardsRes = await getUserCards();
       setCards(cardsRes.cards || []);
 
+      // 🔥 NEW: Fetch overall rating
+      const ratingRes = await getUserOverallRating(user._id);
+      setUserRating(ratingRes);
+
     } catch (err) {
-
       console.error(err);
-
     }
-
   };
 
-  fetchDashboardData();
+  if (user?._id) {
+    fetchDashboardData();
+  }
+}, [user]);
 
-}, []);
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      setUser(null);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   /* ========= helper to flatten subjects ========= */
 
@@ -228,7 +241,10 @@ useEffect(() => {
           <p>Help Center</p>
         </div>
 
-        <button className="logout-btn">Logout</button>
+        {/* <button className="logout-btn">Logout</button> */}
+         <button onClick={handleLogout} className="logout-btn">
+                Logout
+              </button>
 
       </div>
 
@@ -263,13 +279,13 @@ useEffect(() => {
         </p>
 
         <p className="bio">
-          {profile?.bio || "Add a short bio in your profile settings."}
+          {profile?.headline || "Add a headline in your profile settings."}
         </p>
 
         <div className="stats">
           <div>
-            <h4>{profile?.rating?.average || "0.0"}</h4>
-            <span>Rating</span>
+           <h4>{userRating?.avgRating || "0.0"}</h4>
+              <span>Rating ({userRating?.totalReviews || 0})</span>
           </div>
           <div>
             <h4>{profile?.teachingConfig?.totalSessions || "0"}</h4>

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { getUserCards } from "../../../../services/cardServices";
+import { getUserOverallRating } from "../../../../services/ratingServices";
 import SkillCard from "./SkillCard";
 import "./AllCards.css";
 
@@ -15,43 +16,41 @@ export default function AllCards({ profile, setActiveTab, setSelectedCard }) {
   const [teachOpen, setTeachOpen] = useState(false);
   const [paidOpen, setPaidOpen] = useState(false);
 
+  const [userRating, setUserRating] = useState(null);
   const menuRef = useRef(null);
 
   /* FETCH CARDS */
 
-  useEffect(() => {
+useEffect(() => {
+  const fetchCards = async () => {
+    try {
+      setLoading(true);
+      setError("");
 
-    const fetchCards = async () => {
+      const data = await getUserCards();
+      setCards(data.cards || []);
 
-      try {
-
-        setLoading(true);
-        setError("");
-
-        const data = await getUserCards();
-
-        setCards(data.cards || []);
-
-        /* auto select first card */
-        // if (data.cards && data.cards.length > 0) {
-        //   setCurrentCard(data.cards[0]);
-        // }
-
-      } catch (err) {
-
-        console.error(err);
-
-        setError("Failed to load your cards. Please refresh.");
-
-      } finally {
-        setLoading(false);
+      // ✅ IMPORTANT: use profile._id (NOT card.user)
+      if (profile && profile._id) {
+        const ratingRes = await getUserOverallRating(profile._id);
+        setUserRating(ratingRes);
       }
 
-    };
+      // ✅ OPTIONAL (for UI)
+      if (data.cards && data.cards.length > 0) {
+        setCurrentCard(data.cards[0]);
+      }
 
-    fetchCards();
+    } catch (err) {
+      console.error(err);
+      setError("Failed to load your cards. Please refresh.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  }, []);
+  fetchCards();
+}, [profile]); // 🔥 MUST depend on profile
 
   /* CLOSE MENU OUTSIDE CLICK */
 
@@ -88,6 +87,8 @@ export default function AllCards({ profile, setActiveTab, setSelectedCard }) {
     setCurrentCard(card);
     setMenuOpen(false);
   };
+
+  
 
   return (
     <div className="cards-manager">
@@ -229,6 +230,7 @@ export default function AllCards({ profile, setActiveTab, setSelectedCard }) {
           <SkillCard
             card={currentCard}
             profilePhoto={profile?.profilePhoto}
+              userRating={userRating}
             onEditImage={(card) => {
               setSelectedCard(card);
               setActiveTab("images");

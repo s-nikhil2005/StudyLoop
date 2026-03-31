@@ -1,0 +1,43 @@
+.create-container {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f9fc;
+}
+
+.create-box {
+  text-align: center;
+}
+
+.create-box h2 {
+  margin-bottom: 20px;
+}
+
+.generate-btn {
+  padding: 12px 20px;
+  background: #2d8cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.code-box {
+  margin-bottom: 20px;
+}
+
+.code-box h3 {
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: #2d8cff;
+}
+
+.start-btn {
+  padding: 12px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

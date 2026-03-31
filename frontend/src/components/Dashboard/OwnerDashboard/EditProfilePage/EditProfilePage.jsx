@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePhoto from "./ProfilePhoto";
+import AcademicInfo from "./AcademicInfo";
 import "./EditProfilePage.css";
 
 function EditProfilePage({ profile, setProfile, user }) {
@@ -25,6 +26,13 @@ function EditProfilePage({ profile, setProfile, user }) {
         >
           Profile Photo
         </span>
+
+           <span
+  className={activeTab === "academic" ? "active-tab" : ""}
+  onClick={() => setActiveTab("academic")}
+>
+  Academic Info
+</span>
       </div>
 
       <hr />
@@ -44,6 +52,11 @@ function EditProfilePage({ profile, setProfile, user }) {
             user={user}
           />
         )}
+
+         {activeTab === "academic" && (
+    <AcademicInfo />
+  )}
+
       </div>
     </div>
   );

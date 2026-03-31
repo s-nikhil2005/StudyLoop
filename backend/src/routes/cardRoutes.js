@@ -10,7 +10,9 @@ const {
   searchCards,
   getCard,
   deleteCard,
-    updateCardImage
+    updateCardImage,
+    getCardsByUserId,
+    navbarSearch
 } = require("../controllers/cardControllers");
 
 /* CREATE CARD */
@@ -21,6 +23,8 @@ cardRoutes.get("/my-cards", authenticate, getUserCards);
 
 /* SEARCH */
 cardRoutes.get("/search", searchCards);
+
+cardRoutes.get("/navbar-search", navbarSearch);
 
 /* SINGLE CARD */
 cardRoutes.get("/:id", getCard);
@@ -34,5 +38,9 @@ cardRoutes.patch(
   upload.single("image"),
   updateCardImage
 );
+
+cardRoutes.get("/user/:userId", getCardsByUserId);
+
+
 
 module.exports = cardRoutes;

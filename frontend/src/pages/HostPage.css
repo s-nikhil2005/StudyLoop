@@ -1,0 +1,63 @@
+.host-container {
+   height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f9fc;
+  
+}
+
+.host-box {
+  text-align: center;
+}
+
+.logo {
+  font-size: 48px;
+  color: #2d8cff;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.join-btn {
+  width: 260px;
+  padding: 12px;
+  background: #2d8cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.join-btn:hover {
+  background: #1a73e8;
+}
+
+
+.create-btn {
+  width: 260px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.create-btn:hover {
+  background: #f1f1f1;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column; /* or row */
+  gap: 20px;
+}

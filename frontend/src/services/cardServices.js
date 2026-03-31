@@ -41,3 +41,15 @@ export const updateCardImage = async (cardId, data) => {
   return response.data;
 
 };
+
+export const getUserCardsByUserId = async (userId) => {
+  const response = await api.get(`/cards/user/${userId}`);
+  return response.data;
+};
+
+export const navbarSearch = async (query) => {
+  const response = await api.get("/cards/navbar-search", {
+    params: { q: query }
+  });
+  return response.data;
+};
